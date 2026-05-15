@@ -13,101 +13,93 @@ body {
     background-position: center;
 }
 
-/* Popup */
-#popup {
+.popup-box, .popup-duplicate {
     position: absolute;
-    padding: 35px;
-    width: 330px;
+    padding: 25px;
+    width: 260px;
     text-align: center;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
     border: 1px solid rgba(200, 200, 200, 0.4);
-    box-shadow: 0 10px 35px rgba(0,0,0,0.12);
-    animation: fadeIn 0.4s ease;
-    transition: 0.25s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    animation: fadeIn 0.3s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+#popup {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-h2 {
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 25px;
-}
-
-/* Tombol */
 button {
-    padding: 12px 28px;
-    margin: 10px;
+    padding: 10px 20px;
+    margin: 8px;
     border: none;
     border-radius: 12px;
-    cursor: pointer;
     font-size: 15px;
+    cursor: pointer;
     font-weight: 600;
-    transition: 0.2s;
 }
 
-#yesBtn {
-    background: #ff4fa3;
-    color: white;
-    box-shadow: 0 4px 12px rgba(255, 79, 163, 0.4);
-}
+#yesBtn { background: #ff4fa3; color: white; }
+#noBtn { background: #ff4d4d; color: white; }
 
-#yesBtn:hover {
-    transform: scale(1.08);
-}
-
-#noBtn {
-    background: #ff4d4d;
-    color: white;
-    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.4);
-}
-
-#noBtn:hover {
-    transform: scale(1.08);
-}
-
-/* Teks hasil */
-#result {
-    display: none;
-    font-size: 28px;
-    color: #333;
+#successText {
+    position: absolute;
+    top: 40%;
+    width: 100%;
     text-align: center;
+    font-size: 40px;
     font-weight: 700;
-    animation: fadeIn 0.5s ease;
+    color: #ff0055;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: 0.6s ease;
 }
 
-/* Container love */
 #hearts-container {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    overflow: hidden;
 }
 
-/* Love bubble */
-.heart {
+/* FOTO LOVE + TALI */
+.flying-photo {
     position: absolute;
-    bottom: -40px;
-    font-size: 24px;
+    bottom: -80px;
     animation: floatUp 4s linear forwards;
     opacity: 0.9;
+
+    background-size: cover;
+    background-position: center;
+
+    width: 100px;
+    height: 100px;
+
+    /* MASK LOVE */
+    -webkit-mask-image: url('love.svg');
+    mask-image: url('love.svg');
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}
+
+/* TALI BALON */
+.flying-photo::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 2px;
+    height: 80px;
+    background: #ff4fa3;
+    transform: translateX(-50%);
+    animation: floatUp 4s linear forwards;
+    opacity: 0.8;
 }
 
 @keyframes floatUp {
-    0% {
-        transform: translateY(0) translateX(0) scale(0.8);
-        opacity: 0;
-    }
-    20% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-110vh) translateX(var(--drift)) scale(1.2);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-110vh) translateX(var(--drift)) scale(1.2); opacity: 0; }
 }
